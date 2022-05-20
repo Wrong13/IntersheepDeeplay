@@ -12,6 +12,7 @@ namespace IntersheepDeeplay.ViewModel
     public class MainVM : INotifyPropertyChanged
     {
         public string gridWidth { get; set; }
+        
         private bool IsShowPanel;
         private RelayCommand hideShowPanel;
         private void ShowPanel()

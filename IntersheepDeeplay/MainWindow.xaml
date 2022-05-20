@@ -13,7 +13,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="Aqua">
-            <Button HorizontalAlignment="Left" Width="35" Height="35" Background="White" Command="{Binding HideShowPanel}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Background="Red">
             <Button HorizontalAlignment="Left" Width="35" Height="35" Command="{Binding HideShowPanel}"/>
