@@ -30,8 +30,9 @@ namespace IntersheepDeeplay.ViewModel
         public string gridWidth { get; set; }
         public string btnHideShowImg { get; set; }
         private bool IsShowPanel;
-        
+
         private RelayCommand hideShowPanel;
+        private RelayCommand deleteWorker;
         private void ShowPanel()
         {
             gridWidth = "0.3*";
@@ -81,6 +82,21 @@ namespace IntersheepDeeplay.ViewModel
                     if (IsShowPanel == true)
                         HidePanel();
                     else ShowPanel();
+                }));
+            }
+        }
+
+        public RelayCommand DeleteWorker
+        {
+            get
+            {
+                return deleteWorker ?? (deleteWorker = new RelayCommand((selectedWorker) =>
+                {
+                    if (selectedWorker == null) return;
+
+                    var delWorker = selectedWorker as Model.Worker;
+                    db.Workers.Remove(delWorker);
+                    db.SaveChanges();
                 }));
             }
         }
