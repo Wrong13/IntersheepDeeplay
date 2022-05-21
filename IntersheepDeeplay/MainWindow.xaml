@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
     >
-    <Grid>
+    <Grid Background="	#00BFFF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding gridWidth}"/>
             <ColumnDefinition/>
@@ -19,7 +19,7 @@
             <RowDefinition Height="35px"/>
             <RowDefinition/> 
         </Grid.RowDefinitions>
-        <Border Grid.Column="0" Grid.RowSpan="2">
+        <Border Grid.Column="0" Grid.RowSpan="2" >
             <StackPanel VerticalAlignment="Center">
                 <Button Content="Добавить"/>
 
@@ -34,18 +34,19 @@
             </Button.Background>
         </Button>
 
-        <Border Grid.Column="1" Background="Red" Grid.Row="1">
+        <Border Grid.Column="1" Grid.Row="1">
 
-            <ScrollViewer>
+            <ScrollViewer Style="{StaticResource MaterialDesignScrollViewer}">
                 <ListBox x:Name="WorkersListBox" ItemsSource="{Binding Workers}"
-                     
-                     >
+                     Style="{StaticResource MaterialDesignToolVerticalToggleListBox}"
+                     Background="#4169E1"
+                         >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="{Binding FirstName}" Margin="5,5,5,5" Foreground="White"/>
-                                    <TextBlock Text="{Binding LastName}" Margin="5,5,5,5" Foreground="White"/>
+                                    <TextBlock Text="{Binding FirstName}" Margin="5,5,5,5" />
+                                    <TextBlock Text="{Binding LastName}" Margin="5,5,5,5" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="День рождения: "/>
