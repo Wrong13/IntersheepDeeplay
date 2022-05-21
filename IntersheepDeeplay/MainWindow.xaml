@@ -8,24 +8,63 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
+        
     >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding gridWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="Aqua">
-            
-        </StackPanel>
-        <StackPanel Grid.Column="1" Background="Red">
-            <Button HorizontalAlignment="Left" Width="35" Height="35" Command="{Binding HideShowPanel}" BorderThickness="0">
-                <Button.Background>
-                    <ImageBrush ImageSource="{Binding btnHideShowImg}"/>
-                </Button.Background>
-            </Button>
-            
-            
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35px"/>
+            <RowDefinition/> 
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.RowSpan="2">
+            <StackPanel VerticalAlignment="Center">
+                <Button Content="Добавить"/>
+
+                <Button Content="Удалить"/>
+            </StackPanel>
+        </Border>
+        <Button Grid.Column="1" HorizontalAlignment="Left" Width="35" Height="35" 
+                VerticalAlignment="Top"
+                Command="{Binding HideShowPanel}" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="{Binding btnHideShowImg}"/>
+            </Button.Background>
+        </Button>
+
+        <Border Grid.Column="1" Background="Red" Grid.Row="1">
+
+            <ScrollViewer>
+                <ListBox x:Name="WorkersListBox" ItemsSource="{Binding Workers}"
+                     
+                     >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding FirstName}" Margin="5,5,5,5" Foreground="White"/>
+                                    <TextBlock Text="{Binding LastName}" Margin="5,5,5,5" Foreground="White"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="День рождения: "/>
+                                    <TextBlock Text="{Binding Birthday}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Подразделение: "/>
+                                    <TextBlock Text="{Binding Division}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Пол: "/>
+                                    <TextBlock Text="{Binding Gender}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+
+        </Border>
     </Grid>
 </Window>

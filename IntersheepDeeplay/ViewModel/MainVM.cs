@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,11 +14,23 @@ namespace IntersheepDeeplay.ViewModel
     public class MainVM : INotifyPropertyChanged
     {
         IntersheepDeeplay.Model.IntersheepContext db;
+
+        IEnumerable<Model.Worker> workers;
+
+        public IEnumerable<Model.Worker> Workers
+        {
+            get { return workers; }
+            set
+            {
+                workers = value;
+                OnPropertyChanged("Workers");
+            }
+        }
+
         public string gridWidth { get; set; }
         public string btnHideShowImg { get; set; }
-
-
         private bool IsShowPanel;
+        
         private RelayCommand hideShowPanel;
         private void ShowPanel()
         {
@@ -44,15 +57,19 @@ namespace IntersheepDeeplay.ViewModel
 
             db = new Model.IntersheepContext();
             Model.Worker worker = new Model.Worker
-                { FirstName = "Илья",
+            {
+                FirstName = "Илья",
                 LastName = "Козлов",
-                 Birthday = Convert.ToDateTime(DateTime.Now),
-                  Division = "q1ew",
-                   Gender = Model.Gender.male,
-                    
+                Birthday = Convert.ToDateTime(DateTime.Today.Date),
+                Division = "q1ew",
+                Gender = Model.Gender.мужской,
+
             };
             db.Workers.Add(worker);
             db.SaveChanges();
+
+            db.Workers.Load();
+            Workers = db.Workers.Local.ToBindingList();
         }
 
         public RelayCommand HideShowPanel

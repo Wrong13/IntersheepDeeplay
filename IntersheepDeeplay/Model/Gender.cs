@@ -8,7 +8,7 @@ namespace IntersheepDeeplay.Model
 {
      public enum Gender
     {
-        male,
-        female
+        мужской,
+        женский
     }
 }
