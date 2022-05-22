@@ -71,8 +71,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\202205211400454_InitialCreate.cs" />
+    <Compile Include="Migrations\202205211400454_InitialCreate.designer.cs">
+      <DependentUpon>202205211400454_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205221051423_AddDivisionTable.cs" />
+    <Compile Include="Migrations\202205221051423_AddDivisionTable.designer.cs">
+      <DependentUpon>202205221051423_AddDivisionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205221117298_AddAnot_AddJobPositionTable.cs" />
+    <Compile Include="Migrations\202205221117298_AddAnot_AddJobPositionTable.designer.cs">
+      <DependentUpon>202205221117298_AddAnot_AddJobPositionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Division.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\IntersheepContext.cs" />
+    <Compile Include="Model\JobPosition.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -103,6 +118,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202205211400454_InitialCreate.resx">
+      <DependentUpon>202205211400454_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205221051423_AddDivisionTable.resx">
+      <DependentUpon>202205221051423_AddDivisionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205221117298_AddAnot_AddJobPositionTable.resx">
+      <DependentUpon>202205221117298_AddAnot_AddJobPositionTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

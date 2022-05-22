@@ -54,7 +54,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Подразделение: "/>
-                                    <TextBlock Text="{Binding Division}"/>
+                                    <TextBlock Text="{Binding Division.Name}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Пол: "/>

@@ -16,6 +16,7 @@ namespace IntersheepDeeplay.ViewModel
         IntersheepDeeplay.Model.IntersheepContext db;
 
         IEnumerable<Model.Worker> workers;
+        IEnumerable<Model.Division> divisions;
 
         public IEnumerable<Model.Worker> Workers
         {
@@ -24,6 +25,15 @@ namespace IntersheepDeeplay.ViewModel
             {
                 workers = value;
                 OnPropertyChanged("Workers");
+            }
+        }
+        public IEnumerable<Model.Division> Divisions
+        {
+            get { return divisions; }
+            set
+            {
+                divisions = value;
+                OnPropertyChanged("Divisions");
             }
         }
 
@@ -57,20 +67,27 @@ namespace IntersheepDeeplay.ViewModel
             btnHideShowImg = "/res/btn/mainLeft.png";
 
             db = new Model.IntersheepContext();
-            Model.Worker worker = new Model.Worker
-            {
-                FirstName = "Илья",
-                LastName = "Козлов",
-                Birthday = Convert.ToDateTime(DateTime.Today.Date),
-                Division = "q1ew",
-                Gender = Model.Gender.мужской,
+            //Model.Worker worker = new Model.Worker
+            //{
+            //    FirstName = "Илья",
+            //    LastName = "Козлов",
+            //    Birthday = Convert.ToDateTime(DateTime.Today.Date),
+            //    Division = db.Divisions.FirstOrDefault(),
+            //    Gender = Model.Gender.мужской,
 
-            };
-            db.Workers.Add(worker);
-            db.SaveChanges();
+            //};
+            //db.Workers.Add(worker);
+            //db.SaveChanges();
 
+            //Model.Division division = new Model.Division { Name = "Тест1" };
+            //db.Divisions.Add(division);
+            //db.SaveChanges();
+
+            db.Divisions.Load();
             db.Workers.Load();
+            
             Workers = db.Workers.Local.ToBindingList();
+            Divisions = db.Divisions.Local.ToBindingList();
         }
 
         public RelayCommand HideShowPanel
