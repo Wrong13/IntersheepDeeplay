@@ -20,15 +20,32 @@
             <RowDefinition/> 
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Grid.RowSpan="2" >
-            <StackPanel VerticalAlignment="Center">
-                <Button Content="Добавить"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.2*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                        <Button Content="Добавить" 
+                                Command="{Binding AddUser}"
+                                />
 
-                <Button Content="Удалить" Command="{Binding DeleteWorker}" CommandParameter="{Binding ElementName=WorkersListBox,Path=SelectedItem}"/>
-            </StackPanel>
+                        <Button Content="Удалить" Command="{Binding DeleteWorker}" 
+                                CommandParameter="{Binding ElementName=WorkersListBox,Path=SelectedItem}"/>
+                    </StackPanel>
+                    <Border Grid.Row="1">
+                        <Button Grid.Row="1" Content="Редактор"
+                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                />
+                    </Border>
+                </Grid>
+                
         </Border>
         <Button Grid.Column="1" HorizontalAlignment="Left" Width="35" Height="35" 
                 VerticalAlignment="Top"
-                Command="{Binding HideShowPanel}" BorderThickness="0">
+                Command="{Binding HideShowPanel}" BorderThickness="0"
+                
+                >
             <Button.Background>
                 <ImageBrush ImageSource="{Binding btnHideShowImg}"/>
             </Button.Background>

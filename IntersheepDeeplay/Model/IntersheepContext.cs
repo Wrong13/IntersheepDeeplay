@@ -15,5 +15,6 @@ namespace IntersheepDeeplay.Model
         }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Division> Divisions { get; set; }
+        public DbSet<JobPosition> JobPositions { get; set; }
     }
 }
