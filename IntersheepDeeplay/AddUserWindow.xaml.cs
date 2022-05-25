@@ -21,7 +21,7 @@ namespace IntersheepDeeplay
     {
         public AddUserWindow()
         {
-            this.DataContext = new ViewModel.MainVM();
+            this.DataContext = new ViewModel.AddUserVM();
             InitializeComponent();
         }
     }

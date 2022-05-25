@@ -47,14 +47,10 @@ namespace IntersheepDeeplay.ViewModel
                 OnPropertyChanged("JobPositions");
             }
         }
-        public List<string> JobPositionsList { get; set; } = new List<string>();
-        public List<string> DivisionsList { get; set; } = new List<string>();
-
 
         public string gridWidth { get; set; }
         public string btnHideShowImg { get; set; }
         private bool IsShowPanel;
-        private bool IsOpenAddUserWindow = false;
 
         private RelayCommand hideShowPanel;
         private RelayCommand deleteWorker;
@@ -108,13 +104,6 @@ namespace IntersheepDeeplay.ViewModel
             Divisions = db.Divisions.Local.ToBindingList();
             JobPositions = db.JobPositions.Local.ToBindingList();
 
-            JobPositionsList.AddRange(JobPositions.Select(x => x.Name).ToList());
-            DivisionsList.AddRange(Divisions.Select(x => x.Name).ToList());
-
-        }
-
-        private void LoadAddUserWindow()
-        {
 
         }
 
@@ -152,12 +141,9 @@ namespace IntersheepDeeplay.ViewModel
             {
                 return addUser ?? (addUser = new RelayCommand((obj) =>
                 {
-                    if (IsOpenAddUserWindow == false)
-                    {
+
                         AddUserWindow addUserWindow = new AddUserWindow();
                         addUserWindow.Show();
-                        IsOpenAddUserWindow = true;
-                    }
                 }));
             }
         }

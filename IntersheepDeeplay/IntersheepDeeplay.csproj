@@ -92,6 +92,7 @@
     <Compile Include="Model\IntersheepContext.cs" />
     <Compile Include="Model\JobPosition.cs" />
     <Compile Include="Model\Worker.cs" />
+    <Compile Include="ViewModel\AddUserVM.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="AddUserWindow.xaml">

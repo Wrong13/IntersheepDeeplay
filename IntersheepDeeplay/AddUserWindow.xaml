@@ -4,15 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IntersheepDeeplay"
+        xmlns:localEnum="clr-namespace:IntersheepDeeplay.Model"
+
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
         mc:Ignorable="d"
         Title="AddUserWindow" MinHeight="600" MinWidth="800"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:IntersheepDeeplay.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodel="clr-namespace:IntersheepDeeplay.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:AddUserVM}">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="EnumDataSource"
+                            ObjectType="{x:Type sys:Enum}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="localEnum:Gender" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"/>
             <RowDefinition/>
             <RowDefinition Height="0.4*"/>
         </Grid.RowDefinitions>
+        
+        
+        
         <StackPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Имя:"/>
@@ -23,26 +42,28 @@
                 <TextBox MinWidth="100"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Viewbox HorizontalAlignment="Left">
                 <Calendar>
 
                 </Calendar>
             </Viewbox>
-            <StackPanel Margin="2 2 2 2">
-                <TextBlock Text="Выберите пол"/>
-                <ComboBox />
-            </StackPanel>
-            <StackPanel Margin="2 2 2 2">
-                <TextBlock Text="Выберите подразделение"/>
-                <ComboBox ItemsSource="{Binding DivisionsList}"/>
-            </StackPanel>
             <StackPanel>
-                <TextBlock Text="Выберите должность" />
-                <ComboBox ItemsSource="{Binding JobPositionsList}"
+                <StackPanel Margin="2 2 2 2">
+                    <TextBlock Text="Выберите пол"/>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource EnumDataSource}}" />
+                </StackPanel>
+                <StackPanel Margin="2 2 2 2">
+                    <TextBlock Text="Выберите подразделение"/>
+                    <ComboBox ItemsSource="{Binding DivisionsList}"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Выберите должность" />
+                    <ComboBox ItemsSource="{Binding JobPositionsList}"
                           />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
-        
     </Grid>
+    
 </Window>
