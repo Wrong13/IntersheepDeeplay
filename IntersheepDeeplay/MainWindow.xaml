@@ -27,9 +27,12 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Center">
                         <Button Content="Добавить" 
-                                Command="{Binding AddUser}"
+                                Command="{Binding AddWorker}"
                                 />
-
+                        <Button Content="Редактировать"
+                                CommandParameter="{Binding ElementName=WorkersListBox,Path=SelectedItem}"     
+                                Command="{Binding EditWorker}"
+                            />
                         <Button Content="Удалить" Command="{Binding DeleteWorker}" 
                                 CommandParameter="{Binding ElementName=WorkersListBox,Path=SelectedItem}"/>
                     </StackPanel>

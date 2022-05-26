@@ -54,7 +54,8 @@ namespace IntersheepDeeplay.ViewModel
 
         private RelayCommand hideShowPanel;
         private RelayCommand deleteWorker;
-        private RelayCommand addUser;
+        private RelayCommand addWorker;
+        private RelayCommand editWorker;
         private void ShowPanel()
         {
             gridWidth = "0.3*";
@@ -80,17 +81,7 @@ namespace IntersheepDeeplay.ViewModel
 
 
             db = new Model.IntersheepContext();
-            //Model.Worker worker = new Model.Worker
-            //{
-            //    FirstName = "Илья",
-            //    LastName = "Козлов",
-            //    Birthday = Convert.ToDateTime(DateTime.Today.Date),
-            //    Division = db.Divisions.FirstOrDefault(),
-            //    Gender = Model.Gender.мужской,
-            //    JobPosition = db.JobPositions.FirstOrDefault()
-            //};
-            //db.Workers.Add(worker);
-            //db.SaveChanges();
+           
 
             //Model.Division division = new Model.Division { Name = "Тест1" };
             //db.Divisions.Add(division);
@@ -135,15 +126,40 @@ namespace IntersheepDeeplay.ViewModel
             }
         }
 
-        public RelayCommand AddUser
+        public RelayCommand AddWorker
         {
             get
             {
-                return addUser ?? (addUser = new RelayCommand((obj) =>
+                return addWorker ?? (addWorker = new RelayCommand((obj) =>
                 {
 
-                        AddUserWindow addUserWindow = new AddUserWindow();
-                        addUserWindow.Show();
+                    AddUserWindow addUserWindow = new AddUserWindow(new Model.Worker());
+                    if (addUserWindow.ShowDialog() == true)
+                    {
+                        Model.Worker worker = addUserWindow.Worker;
+
+                        db.Workers.Add(worker);
+                        db.SaveChanges();
+                    }
+                }));
+            }
+        }
+
+        public RelayCommand EditWorker
+        {
+            get
+            {
+                return editWorker ?? (editWorker = new RelayCommand((selectedWorker)=>
+                {
+                    if (selectedWorker == null) return;
+                    Model.Worker editWorker = selectedWorker as Model.Worker;
+                    AddUserWindow addUserWindow = new AddUserWindow(editWorker);
+                    if (addUserWindow.ShowDialog() == true)
+                    {
+                        editWorker = addUserWindow.Worker;
+                        db.Entry(editWorker).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }));
             }
         }

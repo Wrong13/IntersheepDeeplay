@@ -10,9 +10,7 @@
         mc:Ignorable="d"
         Title="AddUserWindow" MinHeight="600" MinWidth="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:viewmodel="clr-namespace:IntersheepDeeplay.ViewModel" 
-        d:DataContext="{d:DesignInstance Type=viewmodel:AddUserVM}">
-
+>
     <Window.Resources>
         <ObjectDataProvider x:Key="EnumDataSource"
                             ObjectType="{x:Type sys:Enum}"
@@ -35,35 +33,38 @@
         <StackPanel VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Имя:"/>
-                <TextBox MinWidth="100"/>
+                <TextBox MinWidth="100" x:Name="FirstNameBox" Text="{Binding FirstName}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="Фамилия"/>
-                <TextBox MinWidth="100"/>
+                <TextBox MinWidth="100" x:Name="LastNameBox" Text="{Binding LastName}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Viewbox HorizontalAlignment="Left">
-                <Calendar>
+                <Calendar x:Name="BirthdayCal" SelectedDate="{Binding Birthday}" >
 
                 </Calendar>
             </Viewbox>
             <StackPanel>
                 <StackPanel Margin="2 2 2 2">
                     <TextBlock Text="Выберите пол"/>
-                    <ComboBox ItemsSource="{Binding Source={StaticResource EnumDataSource}}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource EnumDataSource}}" x:Name="GenderBox" SelectedItem="{Binding Gender}" />
                 </StackPanel>
                 <StackPanel Margin="2 2 2 2">
                     <TextBlock Text="Выберите подразделение"/>
-                    <ComboBox ItemsSource="{Binding DivisionsList}"/>
+                    <ComboBox ItemsSource="{Binding DivisionsList}" x:Name="DivisionBox" SelectedItem="{Binding Division.Name}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Выберите должность" />
-                    <ComboBox ItemsSource="{Binding JobPositionsList}"
+                    <ComboBox ItemsSource="{Binding JobPositionsList}" x:Name="JobPositionBox" SelectedItem="{Binding JobPosition.Name}"
                           />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+        <Button Grid.Row="2" x:Name="SaveWorkerBtn" Click="SaveWorkerBtn_Click">
+            
+        </Button>
     </Grid>
     
 </Window>
