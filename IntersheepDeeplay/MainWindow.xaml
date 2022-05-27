@@ -70,7 +70,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="День рождения: "/>
-                                    <TextBlock Text="{Binding Birthday}"/>
+                                    <TextBlock Text="{Binding Birthday.Date}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Подразделение: "/>

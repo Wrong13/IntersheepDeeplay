@@ -91,10 +91,11 @@ namespace IntersheepDeeplay.ViewModel
             db.Workers.Load();
             db.JobPositions.Load();
             
+            
             Workers = db.Workers.Local.ToBindingList();
             Divisions = db.Divisions.Local.ToBindingList();
             JobPositions = db.JobPositions.Local.ToBindingList();
-
+            
 
         }
 
@@ -159,6 +160,10 @@ namespace IntersheepDeeplay.ViewModel
                         editWorker = addUserWindow.Worker;
                         db.Entry(editWorker).State = EntityState.Modified;
                         db.SaveChanges();
+
+                        OnPropertyChanged("Divisions");
+                        OnPropertyChanged("JobPositions");
+                        OnPropertyChanged("Workers");
                     }
                 }));
             }

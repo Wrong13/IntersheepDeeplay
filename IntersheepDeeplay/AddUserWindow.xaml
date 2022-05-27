@@ -53,11 +53,12 @@
                 </StackPanel>
                 <StackPanel Margin="2 2 2 2">
                     <TextBlock Text="Выберите подразделение"/>
-                    <ComboBox ItemsSource="{Binding DivisionsList}" x:Name="DivisionBox" SelectedItem="{Binding Division.Name}"/>
+                    <ComboBox x:Name="DivisionBox"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Выберите должность" />
-                    <ComboBox ItemsSource="{Binding JobPositionsList}" x:Name="JobPositionBox" SelectedItem="{Binding JobPosition.Name}"
+                    <ComboBox x:Name="JobPositionBox" 
+                              IsSynchronizedWithCurrentItem="True"
                           />
                 </StackPanel>
             </StackPanel>
