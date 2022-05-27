@@ -24,7 +24,7 @@ namespace IntersheepDeeplay
         public List<string> jobpositions = new List<string>();
 
         public Model.Worker Worker { get; private set; }
-        public AddUserWindow(Model.Worker worker)
+        public AddUserWindow(Model.Worker worker, bool IsEdit = false)
         {
             db = new Model.IntersheepContext();
 
@@ -33,11 +33,20 @@ namespace IntersheepDeeplay
 
             InitializeComponent();
 
-            LoadItemsSource();
+            if (IsEdit == true) LoadItemsSourceEdit();
+            else if (IsEdit == false) LoadItemsSourceAdd();
 
+            DivisionBox.ItemsSource = divisions;
+            JobPositionBox.ItemsSource = jobpositions;
         }
 
-        private void LoadItemsSource()
+        private void LoadItemsSourceAdd()
+        {
+            divisions.AddRange(db.Divisions.Select(x => x.Name));
+            jobpositions.AddRange(db.JobPositions.Select(x => x.Name));
+        }
+
+        private void LoadItemsSourceEdit()
         {
             divisions.Add(Worker.Division.Name);
             divisions.AddRange(db.Divisions.Where(x => x.Name != Worker.Division.Name).Select(x => x.Name));
@@ -47,10 +56,8 @@ namespace IntersheepDeeplay
 
 
             JobPositionBox.SelectedIndex = 0;
-            JobPositionBox.ItemsSource = jobpositions;
 
             DivisionBox.SelectedIndex = 0;
-            DivisionBox.ItemsSource = divisions;
         }
 
         private void SaveWorkerBtn_Click(object sender, RoutedEventArgs e)

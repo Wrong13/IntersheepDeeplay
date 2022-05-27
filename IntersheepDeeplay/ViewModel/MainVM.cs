@@ -154,16 +154,14 @@ namespace IntersheepDeeplay.ViewModel
                 {
                     if (selectedWorker == null) return;
                     Model.Worker editWorker = selectedWorker as Model.Worker;
-                    AddUserWindow addUserWindow = new AddUserWindow(editWorker);
+                    AddUserWindow addUserWindow = new AddUserWindow(editWorker,true);
                     if (addUserWindow.ShowDialog() == true)
                     {
                         editWorker = addUserWindow.Worker;
                         db.Entry(editWorker).State = EntityState.Modified;
                         db.SaveChanges();
 
-                        OnPropertyChanged("Divisions");
-                        OnPropertyChanged("JobPositions");
-                        OnPropertyChanged("Workers");
+                        
                     }
                 }));
             }

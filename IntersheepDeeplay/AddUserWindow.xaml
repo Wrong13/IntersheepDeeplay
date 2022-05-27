@@ -58,7 +58,7 @@
                 <StackPanel>
                     <TextBlock Text="Выберите должность" />
                     <ComboBox x:Name="JobPositionBox" 
-                              IsSynchronizedWithCurrentItem="True"
+                             
                           />
                 </StackPanel>
             </StackPanel>
