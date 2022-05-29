@@ -121,6 +121,10 @@
     <Compile Include="Migrations\202205260908314_TestDateTime.designer.cs">
       <DependentUpon>202205260908314_TestDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205290829433_testDateString.cs" />
+    <Compile Include="Migrations\202205290829433_testDateString.designer.cs">
+      <DependentUpon>202205290829433_testDateString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Division.cs" />
     <Compile Include="Model\Gender.cs" />
@@ -171,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205260908314_TestDateTime.resx">
       <DependentUpon>202205260908314_TestDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205290829433_testDateString.resx">
+      <DependentUpon>202205290829433_testDateString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

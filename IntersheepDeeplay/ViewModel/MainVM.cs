@@ -73,30 +73,29 @@ namespace IntersheepDeeplay.ViewModel
             OnPropertyChanged("btnHideShowImg");
         }
 
+        private void UpdateBind()
+        {
+            db = new Model.IntersheepContext();
+
+
+            db.Divisions.Load();
+            db.Workers.Load();
+            db.JobPositions.Load();
+
+
+            Workers = db.Workers.Local.ToBindingList();
+            
+            Divisions = db.Divisions.Local.ToBindingList();
+            JobPositions = db.JobPositions.Local.ToBindingList();
+        }
+
         public MainVM()
         {
             IsShowPanel = true;
             gridWidth = "0.3*";
             btnHideShowImg = "/res/btn/mainLeft.png";
 
-
-            db = new Model.IntersheepContext();
-           
-
-            //Model.Division division = new Model.Division { Name = "Тест1" };
-            //db.Divisions.Add(division);
-            //db.SaveChanges();
-
-            db.Divisions.Load();
-            db.Workers.Load();
-            db.JobPositions.Load();
-            
-            
-            Workers = db.Workers.Local.ToBindingList();
-            Divisions = db.Divisions.Local.ToBindingList();
-            JobPositions = db.JobPositions.Local.ToBindingList();
-            
-
+            UpdateBind();
         }
 
         public RelayCommand HideShowPanel
@@ -161,7 +160,7 @@ namespace IntersheepDeeplay.ViewModel
                         db.Entry(editWorker).State = EntityState.Modified;
                         db.SaveChanges();
 
-                        
+                        UpdateBind();
                     }
                 }));
             }

@@ -70,11 +70,15 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="День рождения: "/>
-                                    <TextBlock Text="{Binding Birthday.Date}"/>
+                                    <TextBlock Text="{Binding Birthday}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Подразделение: "/>
                                     <TextBlock Text="{Binding Division.Name}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Должность: "/>
+                                    <TextBlock Text="{Binding JobPosition.Name}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Пол: "/>

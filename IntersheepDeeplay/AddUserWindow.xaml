@@ -42,7 +42,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Viewbox HorizontalAlignment="Left">
-                <Calendar x:Name="BirthdayCal" SelectedDate="{Binding Birthday}" >
+                <Calendar x:Name="BirthdayCal"  >
 
                 </Calendar>
             </Viewbox>

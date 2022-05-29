@@ -38,6 +38,7 @@ namespace IntersheepDeeplay
 
             DivisionBox.ItemsSource = divisions;
             JobPositionBox.ItemsSource = jobpositions;
+            BirthdayCal.SelectedDate = Convert.ToDateTime(Worker.Birthday);
         }
 
         private void LoadItemsSourceAdd()
@@ -65,7 +66,7 @@ namespace IntersheepDeeplay
             Worker.JobPositionId = db.JobPositions.Where(x => x.Name == JobPositionBox.SelectedItem.ToString()).Select(x=>x.Id).FirstOrDefault();
             Worker.Gender = (Model.Gender)Enum.Parse(typeof(Model.Gender), GenderBox.SelectedValue.ToString());
             Worker.DivisionId = db.Divisions.Where(x => x.Name == DivisionBox.SelectedItem.ToString()).Select(x=>x.Id).FirstOrDefault();
-            Worker.Birthday = Convert.ToDateTime(BirthdayCal.SelectedDate).Date;
+            Worker.Birthday = Convert.ToDateTime(BirthdayCal.SelectedDate).ToLongDateString();
             Worker.FirstName = FirstNameBox.Text;
             Worker.LastName = LastNameBox.Text;
 
