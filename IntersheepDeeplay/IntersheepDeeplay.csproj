@@ -131,6 +131,9 @@
     <Compile Include="Model\IntersheepContext.cs" />
     <Compile Include="Model\JobPosition.cs" />
     <Compile Include="Model\Worker.cs" />
+    <Compile Include="RedactorWindow.xaml.cs">
+      <DependentUpon>RedactorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="AddUserWindow.xaml">
@@ -149,6 +152,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RedactorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -84,9 +84,21 @@
                                     <TextBlock Text="Пол: "/>
                                     <TextBlock Text="{Binding Gender}"/>
                                 </StackPanel>
+                                <StackPanel.ToolTip >
+                                    <StackPanel>
+                                        <TextBlock  
+                                        Text="{Binding JobPosition.Description}"
+                                        />
+                                        <TextBlock
+                                        Text="{Binding JobPosition.Description2}"
+                                        />
+                                    </StackPanel>
+                                </StackPanel.ToolTip>   
                             </StackPanel>
+                            
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    
                 </ListBox>
             </ScrollViewer>
 
