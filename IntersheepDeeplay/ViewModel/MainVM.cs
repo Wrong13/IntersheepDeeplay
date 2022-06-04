@@ -173,6 +173,7 @@ namespace IntersheepDeeplay.ViewModel
             {
                 return editJobDiv ?? (editJobDiv = new RelayCommand(obj =>
                 {
+                    
                     RedactorWindow redactor = new RedactorWindow();
                     if (redactor.ShowDialog() == true)
                     {

@@ -134,6 +134,7 @@
     <Compile Include="RedactorWindow.xaml.cs">
       <DependentUpon>RedactorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DivizionVM.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="AddUserWindow.xaml">

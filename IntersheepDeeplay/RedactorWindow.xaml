@@ -5,15 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IntersheepDeeplay"
         mc:Ignorable="d"
-        Title="RedactorWindow" Height="450" Width="800">
-    <Grid>
+        Title="RedactorWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodel="clr-namespace:IntersheepDeeplay.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:DivizionVM}">
+    <Grid Background="	#00BFFF">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="{Binding gridWidth}"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="35px"/>
             <RowDefinition/>
-            <RowDefinition Height="0.2*"/> 
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.RowSpan="2" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                   
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                   
+                    <Button Content="Редактировать"
+                                CommandParameter="{Binding ElementName=DivisionsListBox,Path=SelectedItem}"     
+                                Command="{Binding EditDivision}"
+                            />
+                    <Button Content="Удалить" Command="{Binding DeleteDivision}" 
+                                CommandParameter="{Binding ElementName=DivisionsListBox,Path=SelectedItem}"/>
+                </StackPanel>
+                
+            </Grid>
+
+        </Border>
+        <Button Grid.Column="1" HorizontalAlignment="Left" Width="35" Height="35" 
+                VerticalAlignment="Top"
+                Command="{Binding HideShowPanel}" BorderThickness="0"
+                
+                >
+            <Button.Background>
+                <ImageBrush ImageSource="{Binding btnHideShowImg}"/>
+            </Button.Background>
+        </Button>
+
+        <Border Grid.Column="1" Grid.Row="1">
+
+            <ScrollViewer Style="{StaticResource MaterialDesignScrollViewer}">
+                <ListBox x:Name="DivisionsListBox" ItemsSource="{Binding Divisions}"
+                     Style="{StaticResource MaterialDesignNavigationListBox}"
+                     Background="#4169E1"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding Id}"  />
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" />
+                                </StackPanel>
+                                
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+            </ScrollViewer>
+
+        </Border>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Имя подразделения:" Style="{StaticResource MaterialDesignBody1TextBlock}"/>
+            <TextBox MinWidth="100px" x:Name="DivNameBox" Text="{Binding NameDivisionBox}" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Foreground="White" VerticalAlignment="Center"/>
+            <Button Content="{Binding SaveEditBtn}" 
+                                Command="{Binding AddDivision}"
+                    CommandParameter="{Binding ElementName=DivNameBox,Path=Text}"
+                                />
+        </StackPanel>
     </Grid>
 </Window>

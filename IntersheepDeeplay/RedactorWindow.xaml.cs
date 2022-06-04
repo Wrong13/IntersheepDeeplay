@@ -22,6 +22,7 @@ namespace IntersheepDeeplay
         public RedactorWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel.DivizionVM();
         }
     }
 }
