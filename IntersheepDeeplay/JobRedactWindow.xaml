@@ -1,0 +1,101 @@
+﻿<Window x:Class="IntersheepDeeplay.JobRedactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntersheepDeeplay"
+        xmlns:viewmodel="clr-namespace:IntersheepDeeplay.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewmodel:JobVM}"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="JobRedactWindow" Height="450" Width="800">
+    <Grid Background="	#00BFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding gridWidth}"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35px"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.RowSpan="2" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center">
+
+                    <Button Content="Редактировать"
+                                CommandParameter="{Binding ElementName=DivisionsListBox,Path=SelectedItem}"     
+                                Command="{Binding EditDivision}"
+                            />
+                    <Button Content="Удалить" Command="{Binding DeleteJob}" 
+                                CommandParameter="{Binding ElementName=JobListBox,Path=SelectedItem}"/>
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+        <Button Grid.Column="1" HorizontalAlignment="Left" Width="35" Height="35" 
+                VerticalAlignment="Top"
+                Command="{Binding HideShowPanel}" BorderThickness="0"
+                
+                >
+            <Button.Background>
+                <ImageBrush ImageSource="{Binding btnHideShowImg}"/>
+            </Button.Background>
+        </Button>
+
+        <Border Grid.Column="1" Grid.Row="1">
+
+            <ScrollViewer Style="{StaticResource MaterialDesignScrollViewer}">
+                <ListBox x:Name="JobListBox" ItemsSource="{Binding Jobs}"
+                     Style="{StaticResource MaterialDesignNavigationListBox}"
+                     Background="#4169E1"
+                         >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding Name}" Margin="5,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Описание: "/>
+                                    <TextBlock Text="{Binding Description}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Доп описание: "/>
+                                    <TextBlock Text="{Binding Description2}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+            </ScrollViewer>
+
+        </Border>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Название должности:"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Name}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Описание"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Description}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Доп описание"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Description2}"/>
+                </StackPanel>
+                <Button Content="{Binding SaveEditBtn}"/>
+            </StackPanel>
+        </Border>
+    
+    </Grid>
+</Window>

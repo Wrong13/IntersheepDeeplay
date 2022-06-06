@@ -56,7 +56,8 @@ namespace IntersheepDeeplay.ViewModel
         private RelayCommand deleteWorker;
         private RelayCommand addWorker;
         private RelayCommand editWorker;
-        private RelayCommand editJobDiv;
+        private RelayCommand editDiv;
+        private RelayCommand editJob;
         private void ShowPanel()
         {
             gridWidth = "0.3*";
@@ -167,15 +168,32 @@ namespace IntersheepDeeplay.ViewModel
             }
         }
 
-        public RelayCommand EditJobDiv
+        public RelayCommand EditDiv
         {
             get
             {
-                return editJobDiv ?? (editJobDiv = new RelayCommand(obj =>
+                return editDiv ?? (editDiv = new RelayCommand(obj =>
                 {
                     
                     RedactorWindow redactor = new RedactorWindow();
                     if (redactor.ShowDialog() == true)
+                    {
+
+
+                        UpdateBind();
+                    }
+                }));
+            }
+        }
+
+        public RelayCommand EditJob
+        {
+            get
+            {
+                return editJob ?? (editJob = new RelayCommand(obj =>
+                {
+                    JobRedactWindow jobRedact = new JobRedactWindow();
+                    if (jobRedact.ShowDialog() == true)
                     {
 
 

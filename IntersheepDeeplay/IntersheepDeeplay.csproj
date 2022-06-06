@@ -105,6 +105,9 @@
     <Compile Include="AddUserWindow.xaml.cs">
       <DependentUpon>AddUserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JobRedactWindow.xaml.cs">
+      <DependentUpon>JobRedactWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202205211400454_InitialCreate.cs" />
     <Compile Include="Migrations\202205211400454_InitialCreate.designer.cs">
       <DependentUpon>202205211400454_InitialCreate.cs</DependentUpon>
@@ -135,9 +138,14 @@
       <DependentUpon>RedactorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DivizionVM.cs" />
+    <Compile Include="ViewModel\JobVM.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Page Include="AddUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JobRedactWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
