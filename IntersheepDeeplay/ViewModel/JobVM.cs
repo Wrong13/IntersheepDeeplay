@@ -41,6 +41,7 @@ namespace IntersheepDeeplay.ViewModel
         private RelayCommand hideShowPanel;
         private RelayCommand deleteJob;
         private RelayCommand editJob;
+        private RelayCommand addJob;
         
         private void ShowPanel()
         {
@@ -88,6 +89,50 @@ namespace IntersheepDeeplay.ViewModel
             }
         }
 
+        public RelayCommand AddJob
+        {
+            get
+            {
+                return addJob ?? (addJob = new RelayCommand(obj =>
+                {
+                    if (obj == null) return;
+
+                    
+
+                    if (IsEdit == false)
+                    {
+                        if (Jobs.Where(x => x.Id == _EditJob.Id).ToList().Count > 0)
+                        {
+                            MessageBox.Show("Такая запись уже существует");
+                            return;
+                        }
+                        db.JobPositions.Add(_EditJob);
+                    }
+                    if (IsEdit == true)
+                    {
+                        db.Entry(_EditJob).State = EntityState.Modified;
+                        IsEdit = false;
+
+
+                        SaveEditBtn = "Добавить";
+                        OnPropertyChanged("SaveEditBtn");
+                    }
+                    db.SaveChanges();
+
+                    _EditJob = null;
+                    OnPropertyChanged("_EditJob");
+
+                    db = new Model.IntersheepContext();
+
+                    db.JobPositions.Load();
+
+                    Jobs = db.JobPositions.Local.ToBindingList();
+
+
+                }));
+            }
+        }
+
         public RelayCommand EditJob
         {
             get
@@ -96,9 +141,12 @@ namespace IntersheepDeeplay.ViewModel
                 {
                     if (obj == null) return;
 
+                    _EditJob = obj as Model.JobPosition;
+
                     IsEdit = true;
                     SaveEditBtn = "Изменить";
                     OnPropertyChanged("_EditJob");
+                    OnPropertyChanged("SaveEditBtn");
                 }));
             }
         }

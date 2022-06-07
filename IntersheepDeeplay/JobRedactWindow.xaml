@@ -28,8 +28,8 @@
                 <StackPanel Grid.Row="0" VerticalAlignment="Center">
 
                     <Button Content="Редактировать"
-                                CommandParameter="{Binding ElementName=DivisionsListBox,Path=SelectedItem}"     
-                                Command="{Binding EditDivision}"
+                                CommandParameter="{Binding ElementName=JobListBox,Path=SelectedItem}"     
+                                Command="{Binding EditJob}"
                             />
                     <Button Content="Удалить" Command="{Binding DeleteJob}" 
                                 CommandParameter="{Binding ElementName=JobListBox,Path=SelectedItem}"/>
@@ -83,17 +83,22 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Название должности:"/>
-                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Name}"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" 
+                              Text="{Binding _EditJob.Name}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Описание"/>
-                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Description}"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                              Text="{Binding _EditJob.Description}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Доп описание"/>
-                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" Text="{Binding _EditJob.Description2}"/>
+                    <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" 
+                              Text="{Binding _EditJob.Description2}" Foreground="White"/>
                 </StackPanel>
-                <Button Content="{Binding SaveEditBtn}"/>
+                <Button Content="{Binding SaveEditBtn}" Command="{Binding AddJob}"
+                        CommandParameter="{Binding _EditJob}"
+                        />
             </StackPanel>
         </Border>
     
