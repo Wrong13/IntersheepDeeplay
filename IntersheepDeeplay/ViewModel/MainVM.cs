@@ -20,6 +20,29 @@ namespace IntersheepDeeplay.ViewModel
         IEnumerable<Model.Division> divisions;
         IEnumerable<Model.JobPosition> jobPositions;
 
+        IEnumerable<string> jobNames;
+        IEnumerable<string> divizionNames;
+
+        public IEnumerable<string> JobNames
+        {
+            get { return jobNames; }
+            set
+            {
+                jobNames = value;
+                OnPropertyChanged("JobNames");
+            }
+        }
+
+        public IEnumerable<string> DivizionNames
+        {
+            get { return divizionNames; }
+            set
+            {
+                divizionNames = value;
+                OnPropertyChanged("DivizionNames");
+            }
+        }
+
         public IEnumerable<Model.Worker> Workers
         {
             get { return workers; }
@@ -51,6 +74,8 @@ namespace IntersheepDeeplay.ViewModel
         public string gridWidth { get; set; }
         public string btnHideShowImg { get; set; }
         private bool IsShowPanel;
+        public string findJobNames { get; set; }
+        public string findDivizionNames { get; set; }
 
         private RelayCommand hideShowPanel;
         private RelayCommand deleteWorker;
@@ -58,6 +83,8 @@ namespace IntersheepDeeplay.ViewModel
         private RelayCommand editWorker;
         private RelayCommand editDiv;
         private RelayCommand editJob;
+        private RelayCommand goFiltr;
+        private RelayCommand dropFiltr;
         private void ShowPanel()
         {
             gridWidth = "0.3*";
@@ -89,6 +116,10 @@ namespace IntersheepDeeplay.ViewModel
             
             Divisions = db.Divisions.Local.ToBindingList();
             JobPositions = db.JobPositions.Local.ToBindingList();
+
+            JobNames = db.JobPositions.Select(x => x.Name).ToList();
+            DivizionNames = db.Divisions.Select(x => x.Name).ToList();
+
         }
 
         public MainVM()
@@ -96,6 +127,9 @@ namespace IntersheepDeeplay.ViewModel
             IsShowPanel = true;
             gridWidth = "0.3*";
             btnHideShowImg = "/res/btn/mainLeft.png";
+
+            db = new Model.IntersheepContext();
+
 
             UpdateBind();
         }
@@ -199,6 +233,41 @@ namespace IntersheepDeeplay.ViewModel
 
                         UpdateBind();
                     }
+                }));
+            }
+        }
+
+        public RelayCommand GoFiltr
+        {
+            get
+            {
+                return goFiltr ?? (goFiltr = new RelayCommand(obj =>
+                {
+                    if (findDivizionNames != null && findJobNames != null) Workers = db.Workers.Where(x => x.JobPosition.Name == findJobNames).
+                        Where(x => x.Division.Name == findDivizionNames).ToList();
+                    else
+                    {
+                        if (findJobNames != null) Workers = db.Workers.Where(x => x.JobPosition.Name == findJobNames).ToList();
+                        if (findDivizionNames != null) Workers = db.Workers.Where(x => x.Division.Name == findDivizionNames).ToList();
+                    }
+
+                    OnPropertyChanged("Workers");
+                }));
+            }
+        }
+
+        public RelayCommand DropFiltr
+        {
+            get
+            {
+                return dropFiltr ?? (dropFiltr = new RelayCommand(obj =>
+                {
+                    findDivizionNames = "";
+                    findJobNames = "";
+                    OnPropertyChanged("findDivizionNames");
+                    OnPropertyChanged("findJobNames");
+                    
+                    UpdateBind();
                 }));
             }
         }

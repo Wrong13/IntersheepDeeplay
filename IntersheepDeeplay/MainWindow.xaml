@@ -16,9 +16,33 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35px"/>
+            <RowDefinition Height="60px"/>
             <RowDefinition/> 
         </Grid.RowDefinitions>
+
+        <Border Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        >
+                <Label Content="Фильтры: " FontSize="14" />
+                <ComboBox ItemsSource="{Binding JobNames}" 
+                          MinWidth="50px"
+                          SelectedItem="{Binding findJobNames}"
+                          />
+                <ComboBox ItemsSource="{Binding DivizionNames}"
+                          MinWidth="50px"
+                         
+                          SelectedItem="{Binding findDivizionNames}"
+                          />
+                <Button Content="Применить"
+                        Command="{Binding GoFiltr}"
+                        />
+                <Button Content="Сбросить"
+                        Command="{Binding DropFiltr}"
+                        />
+            </StackPanel>
+        </Border>
+        
         <Border Grid.Column="0" Grid.RowSpan="2" >
                 <Grid>
                     <Grid.RowDefinitions>

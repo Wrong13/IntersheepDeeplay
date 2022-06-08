@@ -29,11 +29,11 @@ namespace IntersheepDeeplay.ViewModel
         public string gridWidth { get; set; }
         public string btnHideShowImg { get; set; }
         public string SaveEditBtn { get; set; }
-        public string NameDivisionBox
-        {
-            get;
-            set;
-        }
+        
+        public string JobName { get; set; }
+        public string JobDescription { get; set; }
+        public string JobDescription2 { get; set; }
+
         private bool IsShowPanel;
         private bool IsEdit;
         public Model.JobPosition _EditJob { get; set; }
@@ -95,21 +95,39 @@ namespace IntersheepDeeplay.ViewModel
             {
                 return addJob ?? (addJob = new RelayCommand(obj =>
                 {
-                    if (obj == null) return;
-
                     
-
                     if (IsEdit == false)
                     {
-                        if (Jobs.Where(x => x.Id == _EditJob.Id).ToList().Count > 0)
+                        if (JobName == null) return;
+                        else if (JobName.Length < 4) return;
+
+
+                        _EditJob = new Model.JobPosition();
+                        _EditJob.Name = JobName;
+                        _EditJob.Description = JobDescription;
+                        _EditJob.Description2 = JobDescription2;
+                        if (Jobs.Where(x => x.Name == _EditJob.Name).ToList().Count > 0)
                         {
                             MessageBox.Show("Такая запись уже существует");
                             return;
                         }
+
+
                         db.JobPositions.Add(_EditJob);
+
+                        JobName = "";
+                        JobDescription = "";
+                        JobDescription2 = "";
+
+                        OnPropertyChanged("JobName");
+                        OnPropertyChanged("JobDescription");
+                        OnPropertyChanged("JobDescription2");
                     }
                     if (IsEdit == true)
                     {
+                        _EditJob.Name = JobName;
+                        _EditJob.Description = JobDescription;
+                        _EditJob.Description2 = JobDescription2;
                         db.Entry(_EditJob).State = EntityState.Modified;
                         IsEdit = false;
 
@@ -142,6 +160,13 @@ namespace IntersheepDeeplay.ViewModel
                     if (obj == null) return;
 
                     _EditJob = obj as Model.JobPosition;
+
+                    JobName = _EditJob.Name;
+                    JobDescription = _EditJob.Description;
+                    JobDescription2 = _EditJob.Description2;
+                    OnPropertyChanged("JobName");
+                    OnPropertyChanged("JobDescription");
+                    OnPropertyChanged("JobDescription2");
 
                     IsEdit = true;
                     SaveEditBtn = "Изменить";

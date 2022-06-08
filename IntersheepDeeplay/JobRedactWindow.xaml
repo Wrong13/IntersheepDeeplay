@@ -84,20 +84,19 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Название должности:"/>
                     <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" 
-                              Text="{Binding _EditJob.Name}" Foreground="White"/>
+                              Text="{Binding JobName}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Описание"/>
                     <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
-                              Text="{Binding _EditJob.Description}" Foreground="White"/>
+                              Text="{Binding JobDescription}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Доп описание"/>
                     <TextBox  MinWidth="100px" Style="{StaticResource MaterialDesignComboBoxEditableTextBox}" 
-                              Text="{Binding _EditJob.Description2}" Foreground="White"/>
+                              Text="{Binding JobDescription2}" Foreground="White"/>
                 </StackPanel>
                 <Button Content="{Binding SaveEditBtn}" Command="{Binding AddJob}"
-                        CommandParameter="{Binding _EditJob}"
                         />
             </StackPanel>
         </Border>
